@@ -69,9 +69,15 @@ public class MainActivity extends AppCompatActivity {
             addressTextView = convertView.findViewById(R.id.person_address);
             aboutTextView = convertView.findViewById(R.id.about_text);
             personImageView = convertView.findViewById(R.id.person_image);
-            //create and get the required contact data
-
-            return super.getView(position, convertView, rootView);
+            //create and get the required contact object
+            Contact newContact = getItem(position);
+            leadingTextView.setText(newContact.leadingText);
+            contactNumberView.setText(newContact.contactNumberText);
+            addressTextView.setText(newContact.addressText);
+            aboutTextView.setText(newContact.aboutText);
+            personImageView.setImageResource(newContact.imageID);
+            //return the required view with all of it^
+            return convertView;
         }
     }
 }
