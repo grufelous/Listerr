@@ -8,6 +8,7 @@ import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,27 +17,57 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends AppCompatActivity {
-
+    private static String TAG = "debugg";
+    private static String PEOPLESITE = "https://www.fakepersongenerator.com/";
     private ListView contactListView;
     private BottomNavigationView bottomNavigationMenu;
+    private TextView introView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         contactListView = findViewById(R.id.listy);
         bottomNavigationMenu = findViewById(R.id.bottom_navigation);
+        introView = findViewById(R.id.introduction_line);
         Toast t = Toast.makeText(getApplicationContext(), "Selected item: " + bottomNavigationMenu.getSelectedItemId(), Toast.LENGTH_LONG);
         t.setGravity(Gravity.LEFT, 20, -15);
         t.show();
         ArrayList<Contact> contactArrayList = new ArrayList<>();
+        fetchContact();
+
         ContactAdapter contactAdapter = new ContactAdapter(this, R.layout.contact_layout, contactArrayList);
         contactListView.setAdapter(contactAdapter);
+    }
+
+    private void fetchContact() {
+        //Contact c;
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, PEOPLESITE, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                introView.setText(response.substring(0, 10));
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d(TAG, "onErrorResponse: something went wrong fetching the contacts :(");
+                introView.setText("Sedlyf");
+            }
+        }
+        );
+        Volley.newRequestQueue(this).add(stringRequest);
     }
 
     public class Contact {
