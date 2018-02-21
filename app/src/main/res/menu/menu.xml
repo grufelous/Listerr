@@ -7,34 +7,35 @@
         android:enabled="true"
         android:id="@+id/contact_item"
         android:icon="@drawable/ic_account_circle_black_24px"
-        app:showAsAction="always"
+        app:showAsAction="withText"
         />
     <item
         android:title="News View"
         android:id="@+id/news_item"
         android:enabled="true"
         android:icon="@drawable/ic_view_news_black_24dp"
-        app:showAsAction="always"
+        app:showAsAction="withText"
         />
     <item
         android:title="Home View"
         android:id="@+id/home_item"
         android:enabled="true"
         android:icon="@drawable/ic_home_black_24dp"
-        app:showAsAction="ifRoom"
+        app:showAsAction="withText"
+        android:checked="true"
         />
     <item
         android:title="Some View"
         android:id="@+id/some_one_item"
         android:enabled="true"
         android:icon="@drawable/ic_assessment_black_24dp"
-        app:showAsAction="ifRoom"
+        app:showAsAction="withText"
         />
     <item
         android:title="Some Other View"
         android:id="@+id/some_two_item"
         android:enabled="true"
         android:icon="@drawable/ic_settings_black_24dp"
-        app:showAsAction="ifRoom"
+        app:showAsAction="withText"
         />
 </menu>
