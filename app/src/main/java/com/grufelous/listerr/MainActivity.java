@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         StringRequest stringRequest = new StringRequest(Request.Method.GET, PEOPLESITE, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                introView.setText(response.substring(0, 10));
+
             }
         }, new Response.ErrorListener() {
             @Override
