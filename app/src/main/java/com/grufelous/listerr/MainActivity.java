@@ -117,9 +117,9 @@ public class MainActivity extends AppCompatActivity {
         public View getView(int position, @Nullable View convertView, @NonNull ViewGroup rootView) {
             TextView leadingTextView, contactNumberView, addressTextView, aboutTextView, medInfoView;
             CircleImageView personImageView;
-            if(convertView == null) {
-                convertView = getLayoutInflater().inflate(layoutResource, rootView, false);
-            }
+//            if(convertView == null) {
+            convertView = getLayoutInflater().inflate(layoutResource, rootView, false);
+//            }
             //find and link the corresponding elements
             leadingTextView = convertView.findViewById(R.id.leading_text);
             contactNumberView = convertView.findViewById(R.id.person_contact_number);
@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
             addressTextView.setText(newContact.addressText);
             aboutTextView.setText(newContact.aboutText);
             personImageView.setImageResource(newContact.imageID);
-            medInfoView.setText(newContact.medInfo);
+            medInfoView.append(newContact.medInfo);
             //return the required view with all of it^
             return convertView;
         }
