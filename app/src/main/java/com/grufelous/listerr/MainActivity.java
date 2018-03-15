@@ -3,13 +3,13 @@ package com.grufelous.listerr;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.internal.BottomNavigationMenu;
-import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -17,13 +17,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private static String TAG = "debugg";
     private static String PEOPLESITE = "https://www.fakepersongenerator.com/";
     private ListView contactListView;
-    private BottomNavigationView bottomNavigationMenu;
+    private BottomNavigationView bottomNavigationView;
     private TextView introView;
     private ArrayList<Contact> contactArrayList;
     @Override
@@ -41,14 +34,37 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         contactListView = findViewById(R.id.listy);
-        bottomNavigationMenu = findViewById(R.id.bottom_navigation);
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
         introView = findViewById(R.id.introduction_line);
-        Toast t = Toast.makeText(getApplicationContext(), "Selected item: " + bottomNavigationMenu.getSelectedItemId(), Toast.LENGTH_LONG);
+        Toast t = Toast.makeText(getApplicationContext(), "Selected item: " + bottomNavigationView.getSelectedItemId(), Toast.LENGTH_LONG);
         t.setGravity(Gravity.LEFT, 20, -15);
         t.show();
         fetchContact();
         ContactAdapter contactAdapter = new ContactAdapter(this, R.layout.contact_layout, contactArrayList);
         contactListView.setAdapter(contactAdapter);
+        bottomNavigationView.setOnNavigationItemSelectedListener(
+                new BottomNavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                        Fragment selectedFragment = null;
+                        switch (item.getItemId()) {
+                            case R.id.contact_item:
+                                selectedFragment = HomeFragment.newInstance();
+                                break;
+                            case R.id.news_item:
+                                selectedFragment = HomeFragment.newInstance();
+                                break;
+                            case R.id.home_item:
+                                selectedFragment = HomeFragment.newInstance();
+                                break;
+                        }
+                        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                        transaction.replace(R.id.place_holder_frame, selectedFragment);
+                        transaction.commit();
+                        return true;
+                    }
+                }
+        );
     }
 
     private void fetchContact() {

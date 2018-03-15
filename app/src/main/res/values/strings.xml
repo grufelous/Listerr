@@ -4,4 +4,7 @@
     <string name="sample_text_medium">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</string>
     <string name="sample_text_large">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas eget aliquet lectus. Donec scelerisque mollis egestas. Aliquam non nunc elementum, imperdiet lorem vel, efficitur lorem.</string>
     <string name="med_info_text">Medical Information: </string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
