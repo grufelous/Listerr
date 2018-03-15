@@ -69,22 +69,25 @@ public class MainActivity extends AppCompatActivity {
         );
         Volley.newRequestQueue(this).add(stringRequest);*/
 
-        Contact c1 = new Contact("Anthony N Brown", "617-631-4682", "Somewhere on this planet we call Earth", "The world shall remember thy name", R.drawable.male1084184606811);
-        Contact c2 = new Contact("Thomas T Decastro", "228-447-4905", "Biloxi, Mississippi(MS), 39531", "Sales and Related Occupations", R.drawable.male20171084122659515);
-        Contact c3 = new Contact("Sharon M Cole", "516-610-9996", "South Ozone Park, New York(NY)", "Healthcare Support Worker, All Other", R.drawable.female20151024435294861);
+        Contact c1 = new Contact("Anthony N Brown", "617-631-4682", "Somewhere on this planet we call Earth", "The world shall remember thy name", "220.7 pounds (100.3 kilograms)", R.drawable.male1084184606811);
+        Contact c2 = new Contact("Thomas T Decastro", "228-447-4905", "Biloxi, Mississippi(MS), 39531", "Sales and Related Occupations", "118.5 pounds (53.75 kilograms)", R.drawable.male20171084122659515);
+        Contact c3 = new Contact("Sharon M Cole", "516-610-9996", "South Ozone Park, New York(NY)", "Healthcare Support Worker, All Other", "179.5 pounds (81.6 kilograms)", R.drawable.female20151024435294861);
+        Contact c4 = new Contact("Rosario J Ramos", "385-315-8118", "West Valley City, Utah(UT), 84120", "\"I don't care if it takes 10 years, a war and trillions of dollars, I will find you.\" - Me about figuring out who unfriended me on Facebook.", "162.6 pounds (73.9 kilograms)", R.drawable.female1022657313050);
         contactArrayList.add(c1);
         contactArrayList.add(c2);
         contactArrayList.add(c3);
+        contactArrayList.add(c4);
     }
 
     public class Contact {
-        String leadingText, contactNumberText, addressText, aboutText;
+        String leadingText, contactNumberText, addressText, aboutText, medInfo;
         int imageID;
-        public Contact(String leadingText, String contactNumberText, String addressText, String aboutText, int imageID) {
+        public Contact(String leadingText, String contactNumberText, String addressText, String aboutText, String medInfo, int imageID) {
             this.leadingText = leadingText;
             this.contactNumberText = contactNumberText;
             this.addressText = addressText;
             this.aboutText = aboutText;
+            this.medInfo = medInfo;
             this.imageID = imageID;
         }
     }
@@ -112,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
         @NonNull
         @Override
         public View getView(int position, @Nullable View convertView, @NonNull ViewGroup rootView) {
-            TextView leadingTextView, contactNumberView, addressTextView, aboutTextView;
+            TextView leadingTextView, contactNumberView, addressTextView, aboutTextView, medInfoView;
             CircleImageView personImageView;
             if(convertView == null) {
                 convertView = getLayoutInflater().inflate(layoutResource, rootView, false);
@@ -123,6 +126,7 @@ public class MainActivity extends AppCompatActivity {
             addressTextView = convertView.findViewById(R.id.person_address);
             aboutTextView = convertView.findViewById(R.id.about_text);
             personImageView = convertView.findViewById(R.id.person_image);
+            medInfoView = convertView.findViewById(R.id.medInfo);
             //create and get the required contact object
             Contact newContact = getItem(position);
             leadingTextView.setText(newContact.leadingText);
@@ -130,6 +134,7 @@ public class MainActivity extends AppCompatActivity {
             addressTextView.setText(newContact.addressText);
             aboutTextView.setText(newContact.aboutText);
             personImageView.setImageResource(newContact.imageID);
+            medInfoView.setText(newContact.medInfo);
             //return the required view with all of it^
             return convertView;
         }

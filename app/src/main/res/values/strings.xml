@@ -3,4 +3,5 @@
     <string name="sample_text_small">Lorem ipsum dolor sit amet</string>
     <string name="sample_text_medium">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</string>
     <string name="sample_text_large">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas eget aliquet lectus. Donec scelerisque mollis egestas. Aliquam non nunc elementum, imperdiet lorem vel, efficitur lorem.</string>
+    <string name="med_info_text">Medical Information: </string>
 </resources>

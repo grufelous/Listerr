@@ -27,7 +27,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/listy"
-        android:layout_below="@id/lol"/>
+        android:layout_below="@id/lol"
+        android:layout_above="@+id/bottom_navigation"/>
     <android.support.design.widget.BottomNavigationView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
