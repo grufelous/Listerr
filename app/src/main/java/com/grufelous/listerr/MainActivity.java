@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private ListView contactListView;
     private BottomNavigationView bottomNavigationMenu;
     private TextView introView;
+    private ArrayList<Contact> contactArrayList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,16 +46,15 @@ public class MainActivity extends AppCompatActivity {
         Toast t = Toast.makeText(getApplicationContext(), "Selected item: " + bottomNavigationMenu.getSelectedItemId(), Toast.LENGTH_LONG);
         t.setGravity(Gravity.LEFT, 20, -15);
         t.show();
-        ArrayList<Contact> contactArrayList = new ArrayList<>();
         fetchContact();
-
         ContactAdapter contactAdapter = new ContactAdapter(this, R.layout.contact_layout, contactArrayList);
         contactListView.setAdapter(contactAdapter);
     }
 
     private void fetchContact() {
+        contactArrayList = new ArrayList<>();
         //Contact c;
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, PEOPLESITE, new Response.Listener<String>() {
+        /*StringRequest stringRequest = new StringRequest(Request.Method.GET, PEOPLESITE, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
@@ -67,7 +67,14 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         );
-        Volley.newRequestQueue(this).add(stringRequest);
+        Volley.newRequestQueue(this).add(stringRequest);*/
+
+        Contact c1 = new Contact("Anthony N Brown", "617-631-4682", "Somewhere on this planet we call Earth", "The world shall remember thy name", R.drawable.male1084184606811);
+        Contact c2 = new Contact("Thomas T Decastro", "228-447-4905", "Biloxi, Mississippi(MS), 39531", "Sales and Related Occupations", R.drawable.male20171084122659515);
+        Contact c3 = new Contact("Sharon M Cole", "516-610-9996", "South Ozone Park, New York(NY)", "Healthcare Support Worker, All Other", R.drawable.female20151024435294861);
+        contactArrayList.add(c1);
+        contactArrayList.add(c2);
+        contactArrayList.add(c3);
     }
 
     public class Contact {
